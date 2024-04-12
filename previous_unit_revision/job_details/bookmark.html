@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>BOOKMARK</h1>
+    <select name="" id="sort" onchange="fun1()">
+        <option value="">sort by</option>
+        <option value="name">by name</option>
+        <option value="job">by job</option>
+    </select>
+    <table border="1">
+        <thead>
+            <th>name</th>
+            <th>email</th>
+            <th>job role</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+</html>
+<script>
+    // let arr=JSON.parse(localStorage.getItem("job_details"))
+    let arr=JSON.parse(localStorage.getItem("booked"))
+function fun1(){
+    document.querySelector("tbody").innerText=""
+    console.log("i am inside fun1");
+    if(document.querySelector("#sort").value=="name"){
+        arr.sort(function(a,b){
+            if(a.name>b.name) return 1
+            if(a.name<b.name) return -1
+            return 0
+        })
+        console.log(arr);
+        create(arr)
+    }
+    if(document.querySelector("#sort").value=="job"){
+        arr.sort(function(a,b){
+            if(a.job_role>b.job_role) return 1
+            if(a.job_role<b.job_role) return -1
+            return 0
+        })
+        console.log(arr);
+        create(arr)
+        
+    }
+}
+
+
+    console.log(arr);
+    function create(){
+        arr.map(function(ele,index,arr){
+        let row=document.createElement("tr")
+        let data1=document.createElement("td")
+        let data2=document.createElement("td")
+        let data3=document.createElement("td")
+       
+        data1.innerText=ele.name
+        data2.innerText=ele.email
+        data3.innerText=ele.job_role
+        // data4.append(btm)
+        row.append(data1,data2,data3)
+        document.querySelector("tbody").append(row)
+
+    })
+
+    }
+ 
+    
+</script>

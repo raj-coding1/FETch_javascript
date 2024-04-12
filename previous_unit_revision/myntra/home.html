@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>admin page</h1>
+    <input type="text" placeholder="enter url" id="url">
+    <input type="text" id="num" placeholder="enter product name">
+    <input type="text" placeholder="enter price" id="price">
+    <button>submit</button>
+</body>
+</html>
+<script>
+    document.querySelector("button").addEventListener("click",fun)
+    let arr=JSON.parse(localStorage.getItem("myntra")) || []
+    function fun(){
+        
+       let obj={
+        image:document.querySelector("#url").value,
+        name: document.querySelector("#num").value,
+        price:document.querySelector("#price").value
+       }
+       arr.push(obj)
+       localStorage.setItem("myntra",JSON.stringify(arr))
+    }
+</script>

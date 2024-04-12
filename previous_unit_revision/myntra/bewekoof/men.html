@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+#container{
+    display: flex;
+    width: 85%;
+    margin: auto;
+    border: 1px solid black;
+    justify-content: space-between;
+}
+#filter-container{
+width: 25%;
+border: 1px solid black;
+}
+#men-container{
+width: 73%;
+border: 1px solid black;
+
+}
+#men-container>div{
+    width: 100%;
+    border: 1px solid black;
+}
+#ad{
+    width: 100%;
+}
+#product-container{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(10,450px);
+    gap: 20px;
+}
+#product-container>div{
+    border: 1px solid black;
+}
+.raj{
+    height: 70%;
+    width: 100%;
+}
+    </style>
+</head>
+<body>
+    <h1>T-shirts for Men</h1>
+    <select name="" id="sort">
+        <option value="">sort by</option>
+        <option value="price">price</option>
+        <option value="name">name</option>
+    </select>
+    <p>filter</p>
+    <div id="container">
+        <div id="filter-container">
+
+        </div>
+        <div id="men-container">
+            <div>
+                <img id="ad" src="https://images.bewakoof.com/uploads/category/desktop/Inside_Desktop-Banner_Graphic-Printed-T-Shirts_Common_(1)_(1)-1712555199.jpg" alt="">
+            </div>
+            <div id="product-container">
+            <!-- <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> -->
+            </div>
+
+
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    let arr=JSON.parse(localStorage.getItem("bewakoof_men"))
+    fun()
+    // console.log(arr);
+   
+    let x=document.querySelector("#sort")
+    x.addEventListener("change",call)
+    function call(){
+        document.querySelector("#product-container").innerText=""
+        if(x.value=="price"){
+            arr.sort(function(a,b){
+                return a.price-b.price
+            })
+            fun()
+
+        }
+        if(x.value=="name"){
+            arr.sort(function(a,b){
+                if(a.name>b.name) return 1
+                if(a.name<b.name) return -1
+                return 0
+            })
+            fun()
+
+        }
+    }
+    function fun(){
+        arr.map(function(ele,index,arr){
+        let box=document.createElement("div")
+        let pic=document.createElement("img")
+        let para1=document.createElement("para")
+        let para2=document.createElement("para")
+        let para3=document.createElement("para")
+        let para4=document.createElement("para")
+        let head=document.createElement("h5")
+        let para5=document.createElement("para")
+        pic.setAttribute("class","raj")
+        pic.src=ele.image
+        para1.innerText=ele.description
+        para2.innerText=ele.name
+        para3.innerText=ele.price
+        para4.innerText=ele.saving
+        para5.innerText=ele.remark
+        head.innerText=ele.offer
+        box.append(pic,para1,para2,para3,para4,head,para5)
+        document.querySelector("#product-container").append(box)
+        // name:num.value,
+        //     price:pri.value,
+        //     saving:trunc.value,
+        //     offer:offer.value,
+        //     remark:remark.value,
+    })
+
+    }
+   
+</script>

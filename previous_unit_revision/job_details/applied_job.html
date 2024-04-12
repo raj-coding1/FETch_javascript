@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>APPLIED JOB</h1>
+    <table border="1">
+        <thead>
+            <th>NAME</th>
+            <th>EMAIL</th>
+            <th>JOB ROLE</th>
+            <th>STATUS</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+</html>
+<script>
+    let arr=JSON.parse(localStorage.getItem("job_details"))
+    let arr1=JSON.parse(localStorage.getItem("booked")) || []
+    arr.map(function(ele,index,arr){
+        let row=document.createElement("tr")
+        let data1=document.createElement("td")
+        let data2=document.createElement("td")
+        let data3=document.createElement("td")
+        let data4=document.createElement("td")
+        let btm=document.createElement("button")
+        btm.innerText="BOOKMARK"
+        btm.addEventListener("click",fun)
+      function(ele){
+        fun()
+      }
+        data1.innerText=ele.name
+        data2.innerText=ele.email
+        data3.innerText=ele.job_role
+        data4.append(btm)
+        row.append(data1,data2,data3,data4)
+        document.querySelector("tbody").append(row)
+
+    })
+    function fun(){
+            arr1.push(ele)
+            // console.log(arr1);
+            // console.log("i am inside fun");
+            localStorage.setItem("booked",JSON.stringify(arr1))
+
+        }
+</script>

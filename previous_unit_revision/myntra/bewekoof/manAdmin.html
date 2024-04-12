@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+   <h1>men admin page</h1> 
+   <input type="text" placeholder="enter url" id="pic">
+   <input type="text" placeholder="enter product description" id="des">
+   <input type="text" placeholder="enter product name" id="num">
+   <input type="text" placeholder="enter price" id="price">
+    <input type="text" placeholder="enter save price" id="trunc">
+    <input type="text" placeholder="enter offer" id="offer">
+    <input type="text" placeholder="enter remark" id="add">
+    <button>submit</button>
+</body>
+</html>
+<script>
+    document.querySelector("button").addEventListener("click",fun)
+    let arr=JSON.parse(localStorage.getItem("bewakoof_men")) || []
+    function fun(){
+        let img=document.querySelector("#pic")
+        let des=document.querySelector("#des")
+        let num=document.querySelector("#num")
+        let pri=document.querySelector("#price")
+        let trunc=document.querySelector("#trunc")
+        let offer=document.querySelector("#offer")
+        let remark=document.querySelector("#add")
+        let obj={
+            image:img.value,
+            description:des.value,
+            name:num.value,
+            price:pri.value,
+            saving:trunc.value,
+            offer:offer.value,
+            remark:remark.value,
+
+        }
+        arr.push(obj)
+        localStorage.setItem("bewakoof_men",JSON.stringify(arr))
+    }
+</script>

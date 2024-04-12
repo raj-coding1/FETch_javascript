@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+           height: 100px;
+           width: 80%;
+           margin: auto;
+           display: flex;
+           /* flex-direction: column; */
+           justify-content: space-around;
+        }
+        a{
+           text-decoration: none;
+           color: black;
+        }
+       </style>
+   </head>
+   <body>
+       <h1>welcome to home page</h1>
+       <div id="container">
+           <h3>HOME</h3>
+          
+           <a href="applied_job.html">
+               <h3>APPLIED JOB</h3>
+           </a>
+           <a href="bookmark.html">
+               <h3>BOOKMARK</h3>
+           </a>
+       </div>
+       <div>
+           <input type="text" placeholder="enter your name" id="num">
+           <input type="text" placeholder="enter your email" id="mail">
+           <select name="" id="role">
+              <option value="">select job</option>
+              <option value="fd">fsd</option>
+              <option value="bsd">bd</option>
+              <option value="fsd">fsd</option>
+   
+           </select>
+           <button>submit</button>
+   
+       </div>
+   </body>
+   </html>
+   <script>
+   document.querySelector("button").addEventListener("click",fun)
+   let arr=JSON.parse(localStorage.getItem("job_details")) || []
+   function fun(){
+       console.log("i am inside fun");
+       let name=document.querySelector("#num")
+       let mail=document.querySelector("#mail")
+       let job=document.querySelector("#role")
+       let obj={
+        name:name.value,
+        email:mail.value,
+        job_role:job.value
+       }
+       arr.push(obj)
+       localStorage.setItem("job_details",JSON.stringify(arr))
+
+
+   }
+   </script>

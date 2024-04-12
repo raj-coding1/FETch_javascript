@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            width: 90%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(5,1fr);
+            grid-template-rows: repeat(5,450px);
+            gap: 20px;
+        }
+        /* #container>div{
+            height: ;
+        } */
+        img{
+            height: 70%;
+            width: 100%;
+        }
+        box{
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+
+    </div>
+</body>
+</html>
+<script>
+    let arr=JSON.parse(localStorage.getItem("myntra"))
+    arr.map(function(ele,index,arr){
+        let box=document.createElement("div")
+        box.setAttribute("id","scontainer")
+        let image=document.createElement("img")
+        let num=document.createElement("h3")
+        let pri=document.createElement("p")
+        let box1=document.createElement("div")
+        box1.setAttribute("id","box")
+        let btm1=document.createElement("button")
+        let btm2=document.createElement("button")
+        btm1.innerText="add to cart"
+        btm2.innerText="remove"
+        box1.append(btm1,btm2)
+        image.src=ele.image
+        num.innerText=ele.name
+        pri.innerText=ele.price
+        box.append(image,num,pri,box1)
+        document.querySelector("#container").append(box)
+        // box.append(box1)
+
+
+    })
+</script>
